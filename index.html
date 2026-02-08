@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b12; --card:#141423; --accent:#ff4d6d; --soft:#ffd1dc; --text:#f5f6fa;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Poppins,system-ui;background:radial-gradient(1200px 600px at 80% -10%, #1b1b3a 0%, var(--bg) 45%); color:var(--text);}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    header{min-height:80vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+    .glow{position:absolute;inset:-20%;background:radial-gradient(closest-side, rgba(255,77,109,.25), transparent 70%);filter:blur(40px)}
+    h1{font-family:"Playfair Display";font-size:clamp(2.4rem,5vw,4rem);margin:0}
+    .subtitle{opacity:.9}
+    .heart{color:var(--accent)}
+    .cta{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    button{background:linear-gradient(135deg,#ff6b81,#ff3b6b);border:0;border-radius:999px;padding:12px 18px;color:white;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(255,77,109,.25)}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,.2)}section{margin:40px 0}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+/* Timeline */
+.timeline{position:relative}
+.timeline:before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),transparent)}
+.t-item{display:grid;grid-template-columns:30px 1fr;gap:12px;margin:16px 0}
+.dot{width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(255,77,109,.15)}
+
+/* Scrapbook */
+.polaroid{background:white;color:#222;border-radius:8px;padding:10px;transform:rotate(var(--r));box-shadow:0 10px 25px rgba(0,0,0,.35)}
+.polaroid img{width:100%;border-radius:6px}
+.polaroid p{margin:6px 0 0;font-family:"Playfair Display"}
+
+/* Love notes */
+.note{border:1px dashed rgba(255,255,255,.3);border-radius:12px;padding:14px}
+
+/* Secret message */
+.secret{filter:blur(8px);transition:.3s}
+.secret.reveal{filter:blur(0)}
+
+footer{opacity:.7;text-align:center;margin:40px 0}
+
+/* Floating hearts */
+.float{position:fixed;bottom:-40px;left:var(--x);font-size:22px;animation:rise 6s linear forwards;pointer-events:none}
+@keyframes rise{to{transform:translateY(-120vh);opacity:0}}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="glow"></div>
+    <div class="container">
+      <h1>Hey, <span class="heart">My Love</span> 💖</h1>
+      <p class="subtitle">This is my little universe for you — made with all my heart.</p>
+      <div class="cta">
+        <button onclick="scrollToId('story')">Our Story</button>
+        <button class="secondary" onclick="scrollToId('notes')">Love Notes</button>
+        <button class="secondary" onclick="toggleMusic()">Play Our Song</button>
+      </div>
+    </div>
+  </header>  <main class="container">
+    <!-- Story Timeline -->
+    <section id="story" class="card">
+      <h2>Our Story ✨</h2>
+      <div class="timeline">
+        <div class="t-item"><div class="dot"></div><div><strong>The First Hello</strong><br/>The moment that started everything.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>Our First Date</strong><br/>Nervous smiles, endless talks, and butterflies.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>The Fair Pin 🎯</strong><br/>You won that pin by shooting the balloon — and I kept it as a lucky charm.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>Today</strong><br/>Still choosing you. Every single day.</div></div>
+      </div>
+    </section><!-- Scrapbook -->
+<section class="card">
+  <h2>Mini Scrapbook 📸</h2>
+  <p>Add your photos here later. For now, placeholders:</p>
+  <div class="grid">
+    <div class="polaroid" style="--r:-3deg"><img src="https://placehold.co/300x220" alt=""/><p>That smile 💕</p></div>
+    <div class="polaroid" style="--r:2deg"><img src="https://placehold.co/300x220" alt=""/><p>Our day out</p></div>
+    <div class="polaroid" style="--r:-1deg"><img src="https://placehold.co/300x220" alt=""/><p>My favorite memory</p></div>
+  </div>
+</section>
+
+<!-- Love Notes -->
+<section id="notes" class="card">
+  <h2>Things I Love About You 📝</h2>
+  <div class="grid">
+    <div class="note">Your smile that fixes my worst days.</div>
+    <div class="note">The way you understand me without words.</div>
+    <div class="note">How you make simple moments magical.</div>
+    <div class="note">How you believe in me — even when I doubt myself.</div>
+  </div>
+</section>
+
+<!-- Secret Message -->
+<section class="card">
+  <h2>A Secret Just for You 🔐</h2>
+  <p class="secret" id="secretMsg">I don’t just love you for who you are… I love you for who I become when I’m with you.</p>
+  <button style="margin-top:10px" onclick="reveal()">Tap to Reveal</button>
+</section>
+
+  </main>  <footer>
+    Made with ❤️ just for you.
+  </footer>  <audio id="song" loop>
+    <!-- Replace with your song file -->
+    <!-- <source src="yoursong.mp3" type="audio/mpeg"> -->
+  </audio>  <script>
+    function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+    function reveal(){document.getElementById('secretMsg').classList.add('reveal')}
+    function toggleMusic(){const a=document.getElementById('song'); if(a.paused){a.play()} else {a.pause()}}
+
+    // Floating hearts
+    setInterval(()=>{
+      const h=document.createElement('div');
+      h.className='float';
+      h.textContent='💗';
+      h.style.setProperty('--x', Math.random()*100+'vw');
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),6000);
+    },800);
+  </script></body>
+</html><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0b12; --card:#141423; --accent:#ff4d6d; --soft:#ffd1dc; --text:#f5f6fa;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Poppins,system-ui;background:radial-gradient(1200px 600px at 80% -10%, #1b1b3a 0%, var(--bg) 45%); color:var(--text);}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    header{min-height:80vh;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}
+    .glow{position:absolute;inset:-20%;background:radial-gradient(closest-side, rgba(255,77,109,.25), transparent 70%);filter:blur(40px)}
+    h1{font-family:"Playfair Display";font-size:clamp(2.4rem,5vw,4rem);margin:0}
+    .subtitle{opacity:.9}
+    .heart{color:var(--accent)}
+    .cta{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    button{background:linear-gradient(135deg,#ff6b81,#ff3b6b);border:0;border-radius:999px;padding:12px 18px;color:white;font-weight:600;cursor:pointer;box-shadow:0 10px 30px rgba(255,77,109,.25)}
+    button.secondary{background:transparent;border:1px solid rgba(255,255,255,.2)}section{margin:40px 0}
+.card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+
+/* Timeline */
+.timeline{position:relative}
+.timeline:before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--accent),transparent)}
+.t-item{display:grid;grid-template-columns:30px 1fr;gap:12px;margin:16px 0}
+.dot{width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 6px rgba(255,77,109,.15)}
+
+/* Scrapbook */
+.polaroid{background:white;color:#222;border-radius:8px;padding:10px;transform:rotate(var(--r));box-shadow:0 10px 25px rgba(0,0,0,.35)}
+.polaroid img{width:100%;border-radius:6px}
+.polaroid p{margin:6px 0 0;font-family:"Playfair Display"}
+
+/* Love notes */
+.note{border:1px dashed rgba(255,255,255,.3);border-radius:12px;padding:14px}
+
+/* Secret message */
+.secret{filter:blur(8px);transition:.3s}
+.secret.reveal{filter:blur(0)}
+
+footer{opacity:.7;text-align:center;margin:40px 0}
+
+/* Floating hearts */
+.float{position:fixed;bottom:-40px;left:var(--x);font-size:22px;animation:rise 6s linear forwards;pointer-events:none}
+@keyframes rise{to{transform:translateY(-120vh);opacity:0}}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="glow"></div>
+    <div class="container">
+      <h1>Hey, <span class="heart">My Love</span> 💖</h1>
+      <p class="subtitle">This is my little universe for you — made with all my heart.</p>
+      <div class="cta">
+        <button onclick="scrollToId('story')">Our Story</button>
+        <button class="secondary" onclick="scrollToId('notes')">Love Notes</button>
+        <button class="secondary" onclick="toggleMusic()">Play Our Song</button>
+      </div>
+    </div>
+  </header>  <main class="container">
+    <!-- Story Timeline -->
+    <section id="story" class="card">
+      <h2>Our Story ✨</h2>
+      <div class="timeline">
+        <div class="t-item"><div class="dot"></div><div><strong>The First Hello</strong><br/>The moment that started everything.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>Our First Date</strong><br/>Nervous smiles, endless talks, and butterflies.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>The Fair Pin 🎯</strong><br/>You won that pin by shooting the balloon — and I kept it as a lucky charm.</div></div>
+        <div class="t-item"><div class="dot"></div><div><strong>Today</strong><br/>Still choosing you. Every single day.</div></div>
+      </div>
+    </section><!-- Scrapbook -->
+<section class="card">
+  <h2>Mini Scrapbook 📸</h2>
+  <p>Add your photos here later. For now, placeholders:</p>
+  <div class="grid">
+    <div class="polaroid" style="--r:-3deg"><img src="https://placehold.co/300x220" alt=""/><p>That smile 💕</p></div>
+    <div class="polaroid" style="--r:2deg"><img src="https://placehold.co/300x220" alt=""/><p>Our day out</p></div>
+    <div class="polaroid" style="--r:-1deg"><img src="https://placehold.co/300x220" alt=""/><p>My favorite memory</p></div>
+  </div>
+</section>
+
+<!-- Love Notes -->
+<section id="notes" class="card">
+  <h2>Things I Love About You 📝</h2>
+  <div class="grid">
+    <div class="note">Your smile that fixes my worst days.</div>
+    <div class="note">The way you understand me without words.</div>
+    <div class="note">How you make simple moments magical.</div>
+    <div class="note">How you believe in me — even when I doubt myself.</div>
+  </div>
+</section>
+
+<!-- Secret Message -->
+<section class="card">
+  <h2>A Secret Just for You 🔐</h2>
+  <p class="secret" id="secretMsg">I don’t just love you for who you are… I love you for who I become when I’m with you.</p>
+  <button style="margin-top:10px" onclick="reveal()">Tap to Reveal</button>
+</section>
+
+  </main>  <footer>
+    Made with ❤️ just for you.
+  </footer>  <audio id="song" loop>
+    <!-- Replace with your song file -->
+    <!-- <source src="yoursong.mp3" type="audio/mpeg"> -->
+  </audio>  <script>
+    function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'})}
+    function reveal(){document.getElementById('secretMsg').classList.add('reveal')}
+    function toggleMusic(){const a=document.getElementById('song'); if(a.paused){a.play()} else {a.pause()}}
+
+    // Floating hearts
+    setInterval(()=>{
+      const h=document.createElement('div');
+      h.className='float';
+      h.textContent='💗';
+      h.style.setProperty('--x', Math.random()*100+'vw');
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),6000);
+    },800);
+  </script></body>
+</html>
